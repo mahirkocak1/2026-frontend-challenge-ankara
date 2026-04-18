@@ -29,15 +29,14 @@ The objective of this dashboard is to provide a clean, data-driven, and highly l
 Follow these steps to run the investigation dashboard on your local machine:
 
 1. Clone the repository:
-```bash
 git clone https://github.com/mahirkocak1/2026-frontend-challenge-ankara.git
 
 **2. Navigate to the project directory:** 
-Bash
-cd 2026-frontend-challenge-ankara/2026-frontend-challange-ankara-mahir-kocak
-3. Install dependencies and start the server:
 
-Bash
+cd 2026-frontend-challenge-ankara/2026-frontend-challange-ankara-mahir-kocak
+
+
+3. Install dependencies and start the server:
 npm install
 npm run dev 
 4. Open the application:
