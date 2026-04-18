@@ -1,0 +1,56 @@
+.record-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.record-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.record-type { font-weight: bold; color: #4f46e5; }
+.record-time { color: #6b7280; font-size: 14px; }
+
+.record-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.person-link {
+  color: #2563eb;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.record-details {
+  background-color: #f3f4f6;
+  padding: 10px;
+  border-radius: 6px;
+  font-style: italic;
+  margin-bottom: 15px;
+  color: #4b5563;
+}
+
+.view-info-btn {
+  width: 100%;
+  padding: 8px;
+  background-color: #e0e7ff;
+  color: #4f46e5;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.view-info-btn:hover { background-color: #c7d2fe; }

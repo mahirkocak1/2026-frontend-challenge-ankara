@@ -1,5 +1,4 @@
-import React from 'react';
-
+import '../styles/RecordDetails.css';
 export default function RecordDetails({ record, handleGoBack }) {
   const coordAnswer = Object.values(record.rawData.answers).find(
     (ans) => ans.text && ans.text.toLowerCase().includes("coordinate")

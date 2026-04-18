@@ -1,3 +1,5 @@
+import '../styles/SummaryPanel.css';
+
 export default function SummaryPanel({ records }) {
   if (!records || records.length === 0) return null;
 

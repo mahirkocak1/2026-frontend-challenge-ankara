@@ -1,5 +1,4 @@
-import React from 'react';
-
+import '../styles/Record.css';
 export default function Record({ record, onSelectPerson, onSelectRecord }) {
   return (
     <div className="record-card">

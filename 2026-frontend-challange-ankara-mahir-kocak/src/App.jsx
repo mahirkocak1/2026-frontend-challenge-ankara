@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import './styles/App.css';
 import Record from "./components/Record.jsx"
 import Person from "./components/Person.jsx"
 import RecordDetails from './components/RecordDetails.jsx'
