@@ -4,7 +4,7 @@ import Record from "./components/Record.jsx"
 import Person from "./components/Person.jsx"
 import RecordDetails from './components/RecordDetails.jsx'
 import SummaryPanel from './components/SummaryPanel.jsx'
-const API_KEY = "54a934fa20b1ccc3a5bd1d2076f90556"; 
+const API_KEY = "5fae2808d995376ed63dd3ae7731e0c2"; 
 
 const FORM_URLS = {
   checkins: `https://api.jotform.com/form/261065067494966/submissions?apiKey=${API_KEY}`,
@@ -109,11 +109,8 @@ function App() {
     setSelectedRecord(null); // Only close the record details while we inspecting a profile of a person
   }
 return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto", fontFamily: "sans-serif" }}>
-      <h1 
-        style={{ textAlign: "center", cursor: "pointer" }} 
-        onClick={handleGoBackToHome}
-      >
+    <div className="app-container">
+      <h1 className="title-header" onClick={handleGoBackToHome}>
         🐾 Missing Podo: Ankara Case
       </h1>
       
@@ -123,7 +120,7 @@ return (
       {!loadingState && !errorState && allRecords.length > 0 && (
         <>          
           {selectedRecord ? (
-            <RecordDetails
+            <RecordDetails 
               record={selectedRecord} 
               handleGoBack={selectedPerson ? handleGoBackToPerson : handleGoBackToHome} 
             />
@@ -136,19 +133,21 @@ return (
             />
           ) : (
             <>
+              <SummaryPanel records={allRecords}/>
+
               <div style={{ marginBottom: "20px" }}>
                 <input 
                   type="text" 
+                  className="search-input"
                   placeholder="🔍 Search by person, location or clue..." 
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }}
                 />
               </div>
-              <SummaryPanel records={allRecords}/>
+
               <p>Total {filteredRecords.length} records found.</p>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+              <div className="record-list">
                 {filteredRecords.map(record => (
                   <Record 
                     key={record.id} 
