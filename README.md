@@ -30,7 +30,7 @@ Follow these steps to run the investigation dashboard on your local machine:
 
 **1. Clone the repository:**
 ```bash
-git clone [https://github.com/mahirkocak1/2026-frontend-challenge-ankara.git](https://github.com/mahirkocak1/2026-frontend-challenge-ankara.git)
+git clone https://github.com/mahirkocak1/2026-frontend-challenge-ankara.git
 
 **2. Navigate to the project directory:** 
 Bash
