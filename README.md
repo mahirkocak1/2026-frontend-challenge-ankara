@@ -28,7 +28,7 @@ The objective of this dashboard is to provide a clean, data-driven, and highly l
 
 Follow these steps to run the investigation dashboard on your local machine:
 
-1. Clone the repository:**
+1. Clone the repository:
 ```bash
 git clone https://github.com/mahirkocak1/2026-frontend-challenge-ankara.git
 
