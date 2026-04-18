@@ -3,6 +3,7 @@ import './App.css'
 import Record from "./components/Record.jsx"
 import Person from "./components/Person.jsx"
 import RecordDetails from './components/RecordDetails.jsx'
+import SummaryPanel from './components/SummaryPanel.jsx'
 const API_KEY = "54a934fa20b1ccc3a5bd1d2076f90556"; 
 
 const FORM_URLS = {
@@ -144,7 +145,7 @@ return (
                   style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }}
                 />
               </div>
-
+              <SummaryPanel records={allRecords}/>
               <p>Total {filteredRecords.length} records found.</p>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
