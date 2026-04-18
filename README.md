@@ -1,31 +1,18 @@
-# Jotform Frontend Challenge Project
+2026 Jotform Frontend Challange Ankara 
 
-## User Information
-Please fill in your information after forking this repository:
+Participant: Mahir Kocak
 
-- **Name**: [Your Name]
+How to run:
 
-## Project Description
-[Add a brief description of your project here]
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your system.
 
-## Getting Started
-[Add instructions for setting up and running the project]
+### Installation Steps
 
-# 🚀 Challenge Duyurusu
-
-## 📅 Tarih ve Saat
-Cumartesi günü başlama saatinden itibaren üç saattir.
-
-## 🎯 Challenge Konsepti
-Bu challenge'da, size özel hazırlanmış bir senaryo üzerine web uygulaması geliştirmeniz istenecektir. Challenge başlangıcında senaryo detayları paylaşılacaktır.Katılımcılar, verilen GitHub reposunu fork ederek kendi geliştirme ortamlarını oluşturacaklardır.
-
-## 📦 GitHub Reposu
-Challenge için kullanılacak repo: https://github.com/cemjotform/2026-frontend-challenge-ankara
-
-## 🛠️ Hazırlık Süreci
-1. GitHub reposunu fork edin
-2. Tercih ettiğiniz framework ile geliştirme ortamınızı hazırlayın
-3. Hazırladığınız setup'ı fork ettiğiniz repoya gönderin
-
-## 💡 Önemli Notlar
-- Katılımcılar kendi tercih ettikleri framework'leri kullanabilirler
+1. **Navigate to the project directory:**
+   Open your terminal and enter the project folder:
+   ```bash
+   cd 2026-frontend-challenge-ankara-mahir-kocak  
+2. Install the dependencies:
+    - npm install
+    - npm run dev   
