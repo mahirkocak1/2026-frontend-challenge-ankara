@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 import Record from "./components/Record.jsx"
+import Person from "./components/Person.jsx"
+import RecordDetails from './components/RecordDetails.jsx'
 const API_KEY = "54a934fa20b1ccc3a5bd1d2076f90556"; 
 
 const FORM_URLS = {
@@ -14,11 +16,10 @@ const FORM_URLS = {
 function App() {
   const [loadingState, setLoadingState] = useState(false)
   const [errorState, setErrorState] = useState(false)
-  
   const [allRecords, setAllRecords] = useState([]);
-  
   const [searchTerm, setSearchTerm] = useState("");
-
+  const [selectedRecord, setSelectedRecord] = useState(null)
+  const [selectedPerson,setSelectedPerson] = useState(null);
   const extractData = (answers, keyword) => {
     if (!answers) return "Bilinmiyor";
     const foundKey = Object.keys(answers).find(key => 
@@ -54,12 +55,13 @@ function App() {
             id: item.id,
             typeIcon,
             typeName,
-            person: extractData(item.answers, "person") || extractData(item.answers, "name") || "Bilinmeyen Kişi",
-            location: extractData(item.answers, "location") || extractData(item.answers, "place") || "Bilinmeyen Konum",
+            person: extractData(item.answers, "person") || extractData(item.answers, "name") || "Unknown Person",
+            location: extractData(item.answers, "location") || extractData(item.answers, "place") || "Unknown Location",
             time: extractData(item.answers, "time") || item.created_at,
             details: extractData(item.answers, "note") || extractData(item.answers, "message") 
             || extractData(item.answers, "tip") || extractData(item.answers, "content") 
-            || extractData(item.answers, "text") || "No content."
+            || extractData(item.answers, "text") || "No content.",
+            rawData: item
           }));
         };
 
@@ -72,7 +74,7 @@ function App() {
         ];
 
         combinedRecords.sort((a, b) => new Date(b.time) - new Date(a.time));
-
+        console.log(combinedRecords)
         setAllRecords(combinedRecords);
  
       } catch(err) {
@@ -83,6 +85,7 @@ function App() {
       }
     }
     getAllData();
+
   }, [])
   //Filter the records using person name, location or the contents of the 
   const filteredRecords = allRecords.filter(record => {
@@ -92,37 +95,70 @@ function App() {
       record.location.toLowerCase().includes(searchLower) ||
       record.details.toLowerCase().includes(searchLower)
     );
-  });
 
-  return (
-    
+  });
+  const selectedPersonRecords = selectedPerson 
+    ? allRecords.filter(record => record.person === selectedPerson)
+    : [];
+  function handleGoBackToHome(){
+    setSelectedPerson(null);
+    setSelectedRecord(null); //Go back to home page
+  }
+  function handleGoBackToPerson() {
+    setSelectedRecord(null); // Only close the record details while we inspecting a profile of a person
+  }
+return (
     <div style={{ padding: "20px", maxWidth: "800px", margin: "0 auto", fontFamily: "sans-serif" }}>
-      <h1 style={{ textAlign: "center" }}>🐾 Missing Podo: Ankara Case</h1>
+      <h1 
+        style={{ textAlign: "center", cursor: "pointer" }} 
+        onClick={handleGoBackToHome}
+      >
+        🐾 Missing Podo: Ankara Case
+      </h1>
       
       {loadingState && <h3 style={{ textAlign: "center" }}>🕵️‍♂️ Gathering intelligence...</h3>}
       {errorState && <h3 style={{ color: "red", textAlign: "center" }}>❌ Database connection failed!</h3>}
-      {/*Render the record information if the errorState and loadingState are falsy values*/}
+      
       {!loadingState && !errorState && allRecords.length > 0 && (
-        <>
-          <div style={{ marginBottom: "20px" }}>
-            <input 
-              type="text" 
-              placeholder="🔍 Search by person, location or clue..." 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }}
+        <>          
+          {selectedRecord ? (
+            <RecordDetails
+              record={selectedRecord} 
+              handleGoBack={selectedPerson ? handleGoBackToPerson : handleGoBackToHome} 
             />
-          </div>
+          ) : selectedPerson ? (
+            <Person 
+              personName={selectedPerson} 
+              records={selectedPersonRecords} 
+              handleGoBack={handleGoBackToHome}
+              onSelectRecord={setSelectedRecord} 
+            />
+          ) : (
+            <>
+              <div style={{ marginBottom: "20px" }}>
+                <input 
+                  type="text" 
+                  placeholder="🔍 Search by person, location or clue..." 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  style={{ width: "100%", padding: "12px", borderRadius: "8px", border: "1px solid #ccc", fontSize: "16px" }}
+                />
+              </div>
 
-          <p>Total {filteredRecords.length} records found.</p>
+              <p>Total {filteredRecords.length} records found.</p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
-            {filteredRecords.map(record => (
-              <Record key={record.id} record={record} />
-            ))}
-          </div>
-          </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+                {filteredRecords.map(record => (
+                  <Record 
+                    key={record.id} 
+                    record={record} 
+                    onSelectPerson={setSelectedPerson}
+                    onSelectRecord={setSelectedRecord}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </>
       )}
     </div>
